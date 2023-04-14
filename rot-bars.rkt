@@ -1,0 +1,46 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname rot-bars) (read-case-sensitive #t) (teachpacks ((lib "universe.ss" "teachpack" "2htdp") (lib "picturing-programs.rkt" "installed-teachpacks"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "universe.ss" "teachpack" "2htdp") (lib "picturing-programs.rkt" "installed-teachpacks")))))
+(define
+  (--0  top deg)
+  (cond
+    [(>= deg top) (- deg (* (floor (/ deg top)) top))]
+    [else deg]))
+
+
+(define(bar y) (above (ellipse 20 50 "solid" "darkgreen") (rectangle 1 y "solid" "white") (ellipse 20 40 "solid" "purple")))
+
+(define (rot-bar deg deg-mult.bar-num) (rotate (--0  360 (* deg-mult.bar-num deg)) (bar (* 21 deg-mult.bar-num))))
+
+(define (twirl deg) (place-image
+                     (overlay
+                     (rot-bar deg 1)
+                     (rot-bar deg 2)
+                     (rot-bar deg 3)
+                     (rot-bar deg 4)
+                     (rot-bar deg 5)
+                     (rot-bar deg 6)
+                     (rot-bar deg 7)
+                     (rot-bar deg 8)
+                     (rot-bar deg 9)
+                     (rot-bar deg 10)
+                     (rot-bar deg 11)
+                     (rot-bar deg 12)
+                     (rot-bar deg 13)
+                     (rot-bar deg 14)
+                     (rot-bar deg 15)
+                     (rot-bar deg 16)
+                     (rot-bar deg 17)
+                     (rot-bar deg 18)
+                     (rot-bar deg 19)
+                     (rot-bar deg 20)
+                     (rot-bar deg 21)
+                     (rot-bar deg 22)
+                     (rot-bar deg 23)
+                     (rot-bar deg 24))
+                     
+                     400
+                     400
+                     (empty-scene 800 800)))
+
+(animate twirl)

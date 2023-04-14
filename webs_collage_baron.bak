@@ -1,0 +1,107 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname webs_collage_baron) (read-case-sensitive #t) (teachpacks ((lib "picturing-programs.rkt" "installed-teachpacks"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "picturing-programs.rkt" "installed-teachpacks")))))
+;; webs_collage_baron        Kevin Baron        9/15/11
+
+;; Purpose: create a collage out of webs and a gradient circle
+
+
+(define x 200)
+(define y 400)
+(define z (/ (* x (sqrt 3)) 2))
+(define diagr (sqrt (+ (sqr x) (sqr y))))
+
+(define r (rectangle x y "outline" "purple"))
+(define t (triangle (- z 30) "outline" "black"))
+(define p (ellipse 1500 diagr "outline" "red"))
+
+(define (offset obj num n) (rotate (* (- num n) (/ 360 num)) obj))
+;;(offset r 24 1)
+
+(define (web shape rep) (overlay shape
+                                 (offset shape rep 1)
+                                 (offset shape rep 2)
+                                 (offset shape rep 3)
+                                 (offset shape rep 4)
+                                 (offset shape rep 5)
+                                 (offset shape rep 6)
+                                 (offset shape rep 7)
+                                 (offset shape rep 8)
+                                 (offset shape rep 9)
+                                 (offset shape rep 10)
+                                 (offset shape rep 11)))
+
+
+
+
+
+
+
+;;circle shading
+
+(define (shadecirc rcirc) (circle rcirc "solid" (make-color 0 rcirc 0)))
+
+(define (8shades rmin)
+  (overlay 
+(shadecirc (+ rmin 0))
+(shadecirc (+ rmin 1))
+(shadecirc (+ rmin 2))
+(shadecirc (+ rmin 3))
+(shadecirc (+ rmin 4))
+(shadecirc (+ rmin 5))
+(shadecirc (+ rmin 6))
+(shadecirc (+ rmin 7))))
+
+
+
+
+
+
+
+
+(define rr (web r 60))
+(define tt (web t 96))
+(define pp (web p 120))
+(define dntp (web pp 10))
+(define dntt (web tt 8))
+(define dntr (web rr 10))
+
+(overlay
+(overlay dntp dntt dntr (rotate 2 dntr)(rotate 1 dntp))
+
+(scale 0.4
+(overlay
+(8shades 4)
+(8shades 12)
+(8shades 20)
+(8shades 28) 
+(8shades 36) 
+(8shades 44) 
+(8shades 52) 
+(8shades 60) 
+(8shades 68) 
+(8shades 76) 
+(8shades 84)
+(8shades 92)
+(8shades 100)
+(8shades 108)
+(8shades 116)
+(8shades 124)
+(8shades 132)
+(8shades 140)
+(8shades 148)
+(8shades 156)
+(8shades 164)
+(8shades 172)
+(8shades 180)
+(8shades 188)
+(8shades 196)
+(8shades 204)
+(8shades 212)
+(8shades 220)
+(8shades 228)
+(8shades 236)
+(8shades 244)))
+
+
+(circle 750 "solid" "black"))

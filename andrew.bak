@@ -1,0 +1,19 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname andrew) (read-case-sensitive #t) (teachpacks ((lib "image.ss" "teachpack" "2htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "image.ss" "teachpack" "2htdp")))))
+;;(circle 900 "solid" "green")
+(define andrew (make-color 100 250 0))
+(define andangle (triangle 200 "solid" andrew))
+(define kevangle andangle)
+(define x 200)
+(define y (* x (sqrt 3)))
+(overlay
+(rectangle y x "outline" "black")
+(rectangle x y "outline" "black")
+(above
+(beside andangle kevangle)
+(flip-vertical (beside andangle kevangle)))
+(circle x "outline" "pink")
+(circle (+ x 20) "outline" "pink")
+(circle (+ x 40) "outline" "pink")
+(circle (+ x 40) "outline" "pink"))

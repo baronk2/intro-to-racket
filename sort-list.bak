@@ -1,0 +1,44 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-abbr-reader.ss" "lang")((modname sort-list) (read-case-sensitive #t) (teachpacks ((lib "image.ss" "teachpack" "2htdp") (lib "universe.ss" "teachpack" "2htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "image.ss" "teachpack" "2htdp") (lib "universe.ss" "teachpack" "2htdp")))))
+(define
+  (sort-list
+   list)
+  (cond
+    [(empty?
+      (rest
+       list))
+     (cons
+      (first
+       list)
+      empty)]
+    [else
+     (cond
+       [(>
+         (first
+          list)
+         (first
+          (sort-list
+          (rest
+           list))))
+        (cons
+         (first
+          list)
+         (sort-list
+          (rest
+           list)))]
+       [else
+        (cons
+         (first
+          (sort-list
+           (rest
+            list)))
+         (cons
+          (first
+           list)
+          (rest
+           (sort-list
+            (rest
+             list)))))])]))
+
+(sort-list (list 10 13 11 9))
